@@ -1,5 +1,5 @@
-library(tidyverse)
 library(ggplot2)
+library(tidyverse)
 library(reshape2)
 
 # 加载OTU数据
@@ -21,7 +21,6 @@ p2 <- ggplot(otu_counts, aes(x=count, y=sample)) +
   geom_bar(stat="identity") + 
   labs(title="Total OTU counts per sample FIG.2", x="Sample", y="Total OTU count") + 
   theme_bw()
-
 
 #排序
 otu_data_sorted <- otu_counts[order(otu_counts$sample, decreasing = TRUE), ]
@@ -56,7 +55,6 @@ p6 <- ggplot(otu_data_sorted, aes(x=reorder(sample, count), y=count, fill=sample
   labs(title="Total OTU counts per sample  FIG.6", x="Sample", y="Total OTU count") + 
   scale_fill_manual(values = colors) + 
   theme_bw()
-
 
 ##减少颜色，按ABC区分颜色种类
 #对数据进行重新整合
@@ -149,7 +147,3 @@ plots <- list(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11)
 for (i in 1:length(plots)) {
   ggsave(paste0("p", i, ".png"), plots[[i]], width = 40, height = 20, units = "cm")
 }
-
-
-
-
